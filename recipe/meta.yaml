@@ -1,5 +1,5 @@
 {% set name = "ipyelk" %}
-{% set version = "0.1.3" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,18 +7,19 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ipyelk-{{ version }}.tar.gz
-  sha256: e0ac540c02526efc1c422f925ddbc0a6e45b08eb36830ce415e9a8b63aac9303
+  sha256: afe4f896a8513a0d812f35b3cb083b21ac40d496b7c471a4a66d5dcaa7998cbe
 
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
     - pip
     - python >=3.7
   run:
+    - async-lru >=1,<2
     - ipywidgets >=7.5.0
     - networkx
     - python >=3.7
