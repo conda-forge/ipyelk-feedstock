@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ipyelk-{{ version }}.tar.gz
-  sha256: e5608f12bfbfcb4b7dfce6c34e85ae1d1e536d54
+  sha256: afe4f896a8513a0d812f35b3cb083b21ac40d496b7c471a4a66d5dcaa7998cbe
 
 build:
   number: 0
@@ -19,10 +19,10 @@ requirements:
     - pip
     - python >=3.7
   run:
+    - async_lru >=1,<2
     - ipywidgets >=7.5.0
     - networkx
     - python >=3.7
-    - async_lru >=1,<2
 
 test:
   imports:
