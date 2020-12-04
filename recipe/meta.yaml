@@ -1,5 +1,5 @@
 {% set name = "ipyelk" %}
-{% set version = "0.2.0" %}
+{% set version = "0.2.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ipyelk-{{ version }}.tar.gz
-  sha256: afe4f896a8513a0d812f35b3cb083b21ac40d496b7c471a4a66d5dcaa7998cbe
+  sha256: b3907ef9548e7946c67393a7094751f7ca83bee3fd28d1e0120cde7dc0a33a0a
 
 build:
   number: 0
