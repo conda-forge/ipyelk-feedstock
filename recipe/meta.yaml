@@ -1,5 +1,5 @@
 {% set name = "ipyelk" %}
-{% set version = "0.3.0" %}
+{% set version = "1.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ipyelk-{{ version }}.tar.gz
-  sha256: 7e242db4444bbb1e2d04997aaa8ed7a8b60c2ad2f3af16f2208ea574763c55aa
+  sha256: 939d0a33fd3f6a4674128dcc6d59ea582633acc58905bd0150208487ec2444ef
 
 build:
   number: 0
@@ -21,6 +21,7 @@ requirements:
   run:
     - async-lru >=1,<2
     - ipywidgets >=7.5.0
+    - jupyterlab >=3.0
     - networkx
     - python >=3.7
 
@@ -31,8 +32,15 @@ test:
     - ipyelk.nx
     - ipyelk.schema
     - ipyelk.tools
+    - ipyelk.contrib.elements
+    - ipyelk.contrib.library
+    - ipyelk.contrib.shapes
+
   commands:
     - python -m pip check
+    - jupyter labextension list  # [unix]
+    - jupyter labextension list 1>labextensions 2>&1  # [unix]
+    - cat labextensions | grep "@jupyrdf/jupyter-elk.*v{{ version }}.*OK.*\(python, {{ name }}\)"  # [unix]
   requires:
     - pip
 
