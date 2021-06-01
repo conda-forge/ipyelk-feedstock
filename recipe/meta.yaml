@@ -1,5 +1,6 @@
 {% set name = "ipyelk" %}
-{% set version = "1.0.0" %}
+{% set version = "2.0.0a0" %}
+{% set js_version = version.replace('a', '-alpha').replace('b', '-beta') %}
 
 package:
   name: {{ name|lower }}
@@ -24,6 +25,7 @@ requirements:
     - jupyterlab >=3.0
     - networkx
     - python >=3.7
+    - pydantic
 
 test:
   imports:
@@ -40,7 +42,7 @@ test:
     - python -m pip check
     - jupyter labextension list  # [unix]
     - jupyter labextension list 1>labextensions 2>&1  # [unix]
-    - cat labextensions | grep "@jupyrdf/jupyter-elk.*v{{ version }}.*OK.*\(python, {{ name }}\)"  # [unix]
+    - cat labextensions | grep "@jupyrdf/jupyter-elk.*v{{ js_version }}.*OK.*\(python, {{ name }}\)"  # [unix]
   requires:
     - pip
 
