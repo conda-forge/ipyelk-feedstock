@@ -31,12 +31,13 @@ test:
   imports:
     - ipyelk
     - ipyelk.diagram
-    - ipyelk.nx
+    - ipyelk.elements
+    - ipyelk.loaders
+    - ipyelk.pipes
     - ipyelk.schema
     - ipyelk.tools
-    - ipyelk.contrib.elements
     - ipyelk.contrib.library
-    - ipyelk.contrib.shapes
+    - ipyelk.contrib.molds
 
   commands:
     - python -m pip check
