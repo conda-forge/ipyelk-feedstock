@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ipyelk-{{ version }}.tar.gz
-  sha256: 939d0a33fd3f6a4674128dcc6d59ea582633acc58905bd0150208487ec2444ef
+  sha256: 7341b9d867529535a87d99996f74b4182107013b8c36c7b17d5b96b88f4f5c3b
 
 build:
   number: 0
