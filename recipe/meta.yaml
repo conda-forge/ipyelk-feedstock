@@ -16,14 +16,14 @@ build:
 
 requirements:
   host:
+    - flit_core >=3.7.1,<4
     - pip
     - python >=3.7
-    - flit_core >=3.7.1,<4
   run:
     - ipywidgets >=8.0.1,<9
     - networkx
-    - python >=3.7
     - pydantic
+    - python >=3.7
   run_constrained:
     - jupyterlab >=3.0
 
@@ -41,12 +41,13 @@ test:
 
   commands:
     - python -m pip check
-    - jupyter labextension list  # [unix]
-    - jupyter labextension list 1>labextensions 2>&1  # [unix]
-    - cat labextensions | grep "@jupyrdf/jupyter-elk.*v{{ js_version }}.*OK.*\(python, ipyelk\)"  # [unix]
+    - jupyter labextension list
+    - jupyter labextension list 1>labextensions 2>&1
+    - grep -iE "@jupyrdf/jupyter-elk.*v{{ js_version }}.*OK.*\(python, ipyelk\)" labextensions 
   requires:
-    - pip
     - jupyterlab
+    - m2-grep  # [win]
+    - pip
 
 about:
   home: https://github.com/jupyrdf/ipyelk
