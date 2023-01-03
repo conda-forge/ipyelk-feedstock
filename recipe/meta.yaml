@@ -1,13 +1,12 @@
-{% set name = "ipyelk" %}
 {% set version = "2.0.0" %}
 {% set js_version = version.replace('a', '-alpha').replace('b', '-beta') %}
 
 package:
-  name: {{ name|lower }}
+  name: ipyelk
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ipyelk-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/i/ipyelk/ipyelk-{{ version }}.tar.gz
   sha256: cddb8fd635bfa8265e300571f3aae501c8f8befbd7440419c7cfc4c109238a68
 
 build:
@@ -19,12 +18,14 @@ requirements:
   host:
     - pip
     - python >=3.7
+    - flit_core >=3.7.1,<4
   run:
     - ipywidgets >=8.0.1,<9
-    - jupyterlab >=3.0
     - networkx
     - python >=3.7
     - pydantic
+  run_constrained:
+    - jupyterlab >=3.0
 
 test:
   imports:
@@ -42,7 +43,7 @@ test:
     - python -m pip check
     - jupyter labextension list  # [unix]
     - jupyter labextension list 1>labextensions 2>&1  # [unix]
-    - cat labextensions | grep "@jupyrdf/jupyter-elk.*v{{ js_version }}.*OK.*\(python, {{ name }}\)"  # [unix]
+    - cat labextensions | grep "@jupyrdf/jupyter-elk.*v{{ js_version }}.*OK.*\(python, ipyelk\)"  # [unix]
   requires:
     - pip
 
@@ -54,6 +55,7 @@ about:
     - LICENSE.txt
     - COPYRIGHT.md
     - third-party/epl-v10.html
+    - src/_d/share/jupyter/labextensions/@jupyrdf/jupyter-elk/static/third-party-licenses.json
 
 extra:
   recipe-maintainers:
