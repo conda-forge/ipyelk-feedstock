@@ -1,5 +1,6 @@
 {% set name = "ipyelk" %}
-{% set version = "1.0.0" %}
+{% set version = "2.0.0" %}
+{% set js_version = version.replace('a', '-alpha').replace('b', '-beta') %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ipyelk-{{ version }}.tar.gz
-  sha256: 939d0a33fd3f6a4674128dcc6d59ea582633acc58905bd0150208487ec2444ef
+  sha256: 7341b9d86cddb8fd635bfa8265e300571f3aae501c8f8befbd7440419c7cfc4c109238a68
 
 build:
   number: 0
@@ -19,28 +20,29 @@ requirements:
     - pip
     - python >=3.7
   run:
-    - async-lru >=1,<2
-    - ipywidgets >=7.5.0
+    - ipywidgets >=8.0.1,<9
     - jupyterlab >=3.0
     - networkx
     - python >=3.7
+    - pydantic
 
 test:
   imports:
     - ipyelk
     - ipyelk.diagram
-    - ipyelk.nx
+    - ipyelk.elements
+    - ipyelk.loaders
+    - ipyelk.pipes
     - ipyelk.schema
     - ipyelk.tools
-    - ipyelk.contrib.elements
     - ipyelk.contrib.library
-    - ipyelk.contrib.shapes
+    - ipyelk.contrib.molds
 
   commands:
     - python -m pip check
     - jupyter labextension list  # [unix]
     - jupyter labextension list 1>labextensions 2>&1  # [unix]
-    - cat labextensions | grep "@jupyrdf/jupyter-elk.*v{{ version }}.*OK.*\(python, {{ name }}\)"  # [unix]
+    - cat labextensions | grep "@jupyrdf/jupyter-elk.*v{{ js_version }}.*OK.*\(python, {{ name }}\)"  # [unix]
   requires:
     - pip
 
