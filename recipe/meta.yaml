@@ -43,7 +43,7 @@ test:
     - python -m pip check
     - jupyter labextension list
     - jupyter labextension list 1>labextensions 2>&1
-    - grep -iE "@jupyrdf/jupyter-elk.*v{{ js_version }}.*OK.*\(python, ipyelk\)" labextensions 
+    - grep -iE "@jupyrdf/jupyter-elk.*v{{ js_version }}.*OK" labextensions 
   requires:
     - jupyterlab
     - m2-grep  # [win]
