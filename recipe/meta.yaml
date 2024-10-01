@@ -1,31 +1,31 @@
-{% set name = "ipyelk" %}
-{% set version = "2.0.0a0" %}
+{% set version = "2.1.0a0" %}
 {% set js_version = version.replace('a', '-alpha').replace('b', '-beta') %}
 
 package:
-  name: {{ name|lower }}
+  name: ipyelk
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ipyelk-{{ version }}.tar.gz
-  sha256: 7341b9d867529535a87d99996f74b4182107013b8c36c7b17d5b96b88f4f5c3b
+  url: https://pypi.io/packages/source/i/ipyelk/ipyelk-{{ version }}.tar.gz
+  sha256: 18519a12931a7844d973f1773d11bc7861500331028e09b327d6c423b0a775b8
 
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
+    - flit-core >=3.9.0,<4
     - pip
-    - python >=3.7
+    - python >=3.9
   run:
-    - async-lru >=1,<2
-    - ipywidgets >=7.5.0
-    - jupyterlab >=3.0
+    - ipywidgets >=8.0.1,<9
     - networkx
-    - python >=3.7
-    - pydantic
+    - pydantic >=1.10.17,<3
+    - python >=3.9
+  run_constrained:
+    - jupyterlab >=4.2,<5
 
 test:
   imports:
@@ -41,10 +41,12 @@ test:
 
   commands:
     - python -m pip check
-    - jupyter labextension list  # [unix]
-    - jupyter labextension list 1>labextensions 2>&1  # [unix]
-    - cat labextensions | grep "@jupyrdf/jupyter-elk.*v{{ js_version }}.*OK.*\(python, {{ name }}\)"  # [unix]
+    - jupyter labextension list
+    - jupyter labextension list 1>labextensions 2>&1
+    - grep -iE "@jupyrdf/jupyter-elk.*v{{ js_version }}.*OK" labextensions
   requires:
+    - jupyterlab
+    - m2-grep  # [win]
     - pip
 
 about:
@@ -55,6 +57,7 @@ about:
     - LICENSE.txt
     - COPYRIGHT.md
     - third-party/epl-v10.html
+    - src/_d/share/jupyter/labextensions/@jupyrdf/jupyter-elk/static/third-party-licenses.json
 
 extra:
   recipe-maintainers:
