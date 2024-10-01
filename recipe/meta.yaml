@@ -18,14 +18,14 @@ requirements:
   host:
     - flit-core >=3.9.0,<4
     - pip
-    - python >=3.8
+    - python >=3.9
   run:
     - ipywidgets >=8.0.1,<9
     - networkx
     - pydantic >=1.10.17,<3
-    - python >=3.8
+    - python >=3.9
   run_constrained:
-    - jupyterlab >=4.2
+    - jupyterlab >=4.2,<5
 
 test:
   imports:
