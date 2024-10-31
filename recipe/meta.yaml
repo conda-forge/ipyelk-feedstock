@@ -1,4 +1,4 @@
-{% set version = "2.1.0" %}
+{% set version = "2.1.1" %}
 {% set js_version = version.replace('a', '-alpha').replace('b', '-beta') %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/i/ipyelk/ipyelk-{{ version }}.tar.gz
-  sha256: 02a39734e754b8a40c1beb9c30f32c7b1513f3e15f7aad241852be005873468b
+  sha256: 57d59a911663abe392aa4bf302445c66aa800a0751da30df3a0c08478532a808
 
 build:
   number: 0
