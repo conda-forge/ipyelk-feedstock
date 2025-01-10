@@ -10,7 +10,7 @@ source:
   sha256: 57d59a911663abe392aa4bf302445c66aa800a0751da30df3a0c08478532a808
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
 
@@ -18,12 +18,12 @@ requirements:
   host:
     - flit-core >=3.9.0,<4
     - pip
-    - python >=3.9
+    - python {{ python_min }}
   run:
     - ipywidgets >=8.0.1,<9
     - networkx
     - pydantic >=1.10.17,<3
-    - python >=3.9
+    - python >={{ python_min }}
   run_constrained:
     - jupyterlab >=4.1,<5
 
@@ -48,6 +48,7 @@ test:
     - jupyterlab
     - m2-grep  # [win]
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/jupyrdf/ipyelk
