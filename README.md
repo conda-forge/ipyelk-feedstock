@@ -3,11 +3,13 @@ About ipyelk-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ipyelk-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/jupyrdf/ipyelk
+Home: https://pypi.org/project/ipyelk
 
 Package license: BSD-3-Clause AND EPL-1.0 AND EPL-2.0
 
 Summary: ELK widget for Jupyter
+
+Development: https://github.com/jupyrdf/ipyelk
 
 Current build status
 ====================
